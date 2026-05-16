@@ -16,10 +16,10 @@ z jego preferencjami. System został zaprojektowany w celu uproszczenia i
 przyspieszenia procesu umawiania wizyt lekarskich poprzez automatyczne
 dopasowanie lekarzy na podstawie określonych kryteriów.
 Asystent umożliwia dobór lekarzy według takich parametrów jak:
-• cena wizyty,
-• forma konsultacji (online lub stacjonarna),
-• dostępność terminów odpowiadających harmonogramowi użytkownika,
-• specjalizacja medyczna i lokalizacja.
+- cena wizyty,
+- forma konsultacji (online lub stacjonarna),
+- dostępność terminów odpowiadających harmonogramowi użytkownika,
+- specjalizacja medyczna i lokalizacja.
 
 Na podstawie tych danych system analizuje preferencje użytkownika i
 przedstawia najlepiej dopasowane wyniki, co pozwala ograniczyć czas
@@ -54,17 +54,17 @@ opisany jako fakt w postaci:
 lekarz(Imie, Specjalizacja, Koszt, Dostepnosc, Forma, Miasto, Ocena, Platnosc)
 ```
 gdzie:
-• Imie – pełne imię i nazwisko lekarza,
-• Specjalizacja – dziedzina medycyny, w której specjalizuje się lekarz (np.
+- Imie – pełne imię i nazwisko lekarza,
+- Specjalizacja – dziedzina medycyny, w której specjalizuje się lekarz (np.
 internista, kardiolog),
-• Koszt – cena wizyty w złotówkach; wartość 0 oznacza wizytę refundowaną
+- Koszt – cena wizyty w złotówkach; wartość 0 oznacza wizytę refundowaną
 przez NFZ,
-• Dostepnosc – lista dni tygodnia, w których lekarz przyjmuje pacjentów,
-• Forma – forma wizyty: stacjonarnie, online lub hybrydowo (połączenie
+- Dostepnosc – lista dni tygodnia, w których lekarz przyjmuje pacjentów,
+- Forma – forma wizyty: stacjonarnie, online lub hybrydowo (połączenie
 obu),
-• Miasto – lokalizacja wizyty,
-• Ocena – ocena lekarza w skali 1–5,
-• Platnosc – typ płatności: nfz, prywatnie lub oba (oba typy wizyt).
+- Miasto – lokalizacja wizyty,
+- Ocena – ocena lekarza w skali 1–5,
+- Platnosc – typ płatności: nfz, prywatnie lub oba (oba typy wizyt).
 
 #### Atrybuty
 Baza wiedzy uwzględnia następujące cechy lekarzy:
