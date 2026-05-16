@@ -3,7 +3,7 @@
 ### Spis treści
 1. [Wstęp i cel projektu](#wstęp-i-cel-projektu)
 2. [Opis bazy wiedzy](#opis-bazy-wiedzy)
-3. [Najważniejsze reguły](#najważniejsze-reguły)
+3. [Implementacja logiki ](#Implementacja-logiki)
 4. [Instrukcja obsługi i przykłady użycia](#instrukcja-obsługi-i-przykłady-użycia)
 
 ---
@@ -81,5 +81,54 @@ geograficzne.
 wyników według jakości usług.
 7. Rodzaj płatności – możliwość dopasowania wizyty do preferencji NFZ lub
 prywatnie.
+---
+### Implementacja logiki 
+#### Pasuje
+Sprawdza, czy lekarz spełnia wymagania użytkownika dotyczące
+maksymalnego kosztu wizyty, dnia tygodnia, formy konsultacji i rodzaju
+płatności.
+```prolog
+pasuje(Imie, Koszt, Dostepnosc, Forma, Miasto, Ocena, Platnosc,
+       Specjalizacja, MaxKoszt, Dzien, PForma, PPlatnosc) :-
+    lekarz(Imie, Specjalizacja, Koszt, Dostepnosc, Forma, Miasto, Ocena, Platnosc),
+    (PPlatnosc = dowolna -> true
+    ; PPlatnosc = nfz -> (Platnosc = nfz ; Platnosc = oba)
+    ; PPlatnosc = prywatnie -> (Platnosc = prywatnie ; Platnosc = oba)
+    ),
+    (PPlatnosc = nfz -> true ; Koszt =< MaxKoszt),
+    (Dzien = dowolny -> true ; member(Dzien, Dostepnosc)),
+    (PForma = dowolna -> true ; Forma = PForma ; Forma = hybrydowo).
+```
+#### Znajdź
+Generuje listę lekarzy spełniających kryteria użytkownika i sortuje ją
+według oceny od najwyższej do najniższej.
+```prolog
+znajdz(Spec, MaxKoszt, Dzien, Forma, Platnosc, Wyniki) :-
+    findall(
+        lek(Ocena, Imie, Koszt, Forma2, Miasto, Dostepnosc, Platnosc2),
+        pasuje(Imie, Koszt, Dostepnosc, Forma2, Miasto, Ocena, Platnosc2,
+               Spec, MaxKoszt, Dzien, Forma, Platnosc),
+        Lista
+    ),
+    msort(Lista, Posortowana),
+    reverse(Posortowana, Wyniki).
+```
+#### Pokaż wyniki
+Wyświetla użytkownikowi listę dopasowanych lekarzy wraz z ich
+oceną, ceną, formą wizyty i dostępnością.
+```prolog
+pokaz_wyniki(Lista) :-
+    Lista \= [],
+    length(Lista, N),
+    format('~nZnaleziono ~w lekarzy:~n', [N]),
+    nl,
+    pokaz_liste(Lista, 1).
+```
+#### Ograniczenia danych – system wymusza:
+• maksymalny koszt wizyty dla płatności prywatnej (100, 150, 200 PLN lub
+brak limitu),
+• dopasowanie tylko do dni, w których lekarz przyjmuje,
+• dopasowanie formy wizyty: stacjonarnie, online lub hybrydowo jako
+zgodne z każdą formą.
 ---
 
