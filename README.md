@@ -84,9 +84,8 @@ prywatnie.
 ---
 ### Implementacja logiki 
 #### Pasuje
-Sprawdza, czy lekarz spełnia wymagania użytkownika dotyczące
-maksymalnego kosztu wizyty, dnia tygodnia, formy konsultacji i rodzaju
-płatności.
+Sprawdza, czy lekarz spełnia wszystkie wymagania użytkownika – specjalizację, koszt, dostępność w wybranym dniu, formę wizyty i sposób płatności.
+Jeśli wszystkie kryteria pasują, lekarz zostaje dopuszczony do wyników.
 ```prolog
 pasuje(Imie, Koszt, Dostepnosc, Forma, Miasto, Ocena, Platnosc,
        Specjalizacja, MaxKoszt, Dzien, PForma, PPlatnosc) :-
@@ -100,8 +99,8 @@ pasuje(Imie, Koszt, Dostepnosc, Forma, Miasto, Ocena, Platnosc,
     (PForma = dowolna -> true ; Forma = PForma ; Forma = hybrydowo).
 ```
 #### Znajdź
-Generuje listę lekarzy spełniających kryteria użytkownika i sortuje ją
-według oceny od najwyższej do najniższej.
+Tworzy listę wszystkich lekarzy spełniających kryteria, sortuje ich według oceny i zwraca gotową listę do wyświetlenia. 
+Pozwala szybko znaleźć najlepszych lekarzy bez ręcznego przeszukiwania bazy.
 ```prolog
 znajdz(Spec, MaxKoszt, Dzien, Forma, Platnosc, Wyniki) :-
     findall(
@@ -114,8 +113,8 @@ znajdz(Spec, MaxKoszt, Dzien, Forma, Platnosc, Wyniki) :-
     reverse(Posortowana, Wyniki).
 ```
 #### Pokaż wyniki
-Wyświetla użytkownikowi listę dopasowanych lekarzy wraz z ich
-oceną, ceną, formą wizyty i dostępnością.
+Wyświetla dopasowanych lekarzy w czytelnej formie lub informuje, że żaden lekarz nie spełnia kryteriów. 
+Dzięki temu użytkownik od razu widzi, kogo może wybrać lub jakie parametry zmienić.
 ```prolog
 pokaz_wyniki(Lista) :-
     Lista \= [],
