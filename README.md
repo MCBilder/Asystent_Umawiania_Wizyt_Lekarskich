@@ -131,4 +131,91 @@ brak limitu),
 - dopasowanie formy wizyty: stacjonarnie, online lub hybrydowo jako
 zgodne z każdą formą.
 ---
-
+### Instrukcja obsługi i przykłady użycia
+Aby rozpocząć pracę z systemem i uruchomić asystenta umawiania wizyt
+lekarskich, należy w konsoli Prologa wpisać predykat:
+```prolog
+start
+```
+Po uruchomieniu systemu asystent wyświetli listę dostępnych specjalizacji. Z
+listy należy wybrać typ lekarza, którego poszukujemy, wpisując odpowiedni
+numer odpowiadający wybranej specjalizacji.
+```prolog
+Jakiego lekarza potrzebujesz?
+  1. Internista
+  2. Kardiolog
+  3. Dermatolog
+  4. Ortopeda
+  5. Neurolog
+  6. Okulista
+  7. Pediatra
+  8. Psychiatra
+  9. Stomatolog
+  10. Urolog
+Podaj numer: 2
+```
+Po wybraniu specjalizacji asystent pyta o typ wizyty, czyli sposób płatności.
+Użytkownik może wybrać jedną z opcji.
+```prolog
+Rodzaj wizyty?
+  1. NFZ (bezpłatnie)
+  2. Prywatnie
+  3. Dowolny
+Podaj numer: 2
+```
+Po wyborze typu wizyty system dostosowuje kolejne pytania w zależności od
+wybranej opcji:
+- Jeśli użytkownik wybierze NFZ, system pomija pytanie o budżet, ponieważ
+wizyta jest bezpłatna.
+- Jeśli użytkownik wybierze wizytę prywatną, asystent prosi o określenie
+maksymalnego budżetu na wizytę. Można wybrać jedną z dostępnych opcji.
+```prolog
+Maksymalny koszt wizyty?
+  1. do 100 PLN
+  2. do 150 PLN
+  3. do 200 PLN
+  4. bez limitu
+Podaj numer: 2
+```
+Kolejnym krokiem jest wybór preferowanego dnia tygodnia, w którym
+użytkownik chciałby odbyć wizytę. System wyświetla listę dni do wyboru.
+```prolog
+Preferowany dzień tygodnia?
+  1. Poniedziałek
+  2. Wtorek
+  3. Środa
+  4. Czwartek
+  5. Piątek
+  6. Sobota
+  7. Dowolny
+Podaj numer: 3
+```
+Po wyborze preferowanego dnia system pyta o formę wizyty, czyli sposób, w
+jaki wizyta ma się odbyć.
+```prolog
+Forma wizyty?
+  1. Stacjonarnie
+  2. Online
+  3. Dowolna
+Podaj numer: 1
+```
+Po podaniu wszystkich kryteriów (specjalizacja, typ wizyty, maksymalny budżet,
+preferowany dzień i forma wizyty) system analizuje bazę danych i wyświetla
+listę dopasowanych lekarzy.
+• Jeśli znalezieni zostaną lekarze spełniający wszystkie wymagania,
+asystent przedstawia ich dane, w tym imię, koszt wizyty, formę, miasto,
+ocenę oraz dostępne dni.
+```prolog
+1. Dr Piotr Wisniewski
+   Koszt: 200 PLN
+   Płatność: prywatnie
+   Forma: stacjonarnie
+   Miasto: Warszawa
+   Ocena: 5/5
+   Dni: [poniedziałek, środa]
+```
+##### lub
+```prolog
+Brak lekarzy spełniających podane kryteria.
+Spróbuj zmienić dzień, formę lub zwiększyć budżet.
+```
