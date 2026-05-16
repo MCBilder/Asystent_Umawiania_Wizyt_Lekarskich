@@ -124,11 +124,11 @@ pokaz_wyniki(Lista) :-
     nl,
     pokaz_liste(Lista, 1).
 ```
-#### Ograniczenia danych – system wymusza:
-• maksymalny koszt wizyty dla płatności prywatnej (100, 150, 200 PLN lub
+#### Ograniczenia danych – system wymusza
+- maksymalny koszt wizyty dla płatności prywatnej (100, 150, 200 PLN lub
 brak limitu),
-• dopasowanie tylko do dni, w których lekarz przyjmuje,
-• dopasowanie formy wizyty: stacjonarnie, online lub hybrydowo jako
+- dopasowanie tylko do dni, w których lekarz przyjmuje,
+- dopasowanie formy wizyty: stacjonarnie, online lub hybrydowo jako
 zgodne z każdą formą.
 ---
 
